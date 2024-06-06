@@ -20,6 +20,12 @@ class Game:
             self.word_x = self.screen.get_width()
             self.word_y = random.randint(0, self.screen.get_height() - 50)
 
+    def handle_input(self, char):
+        if self.current_word and char == self.current_word[0]:
+            self.current_word = self.current_word[1:]
+            if not self.current_word:
+                self.next_word()
+
     def update(self, event=None):
         if event and event.type == pygame.KEYDOWN:
             self.handle_input(event.unicode)
