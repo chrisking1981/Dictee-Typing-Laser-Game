@@ -23,7 +23,7 @@ class Game:
             self.word_y = random.randint(0, self.screen.get_height() - 50)
 
     def handle_input(self, char):
-        if self.current_word and char == self.current_word[0]:
+        if self.current_word and char == self.current_word[self.typed_length]:
             self.typed_length += 1
             if self.typed_length >= len(self.current_word):
                 self.next_word()
@@ -39,4 +39,5 @@ class Game:
     def draw(self):
         self.screen.fill((0, 0, 0))
         word_surface = self.font.render(self.current_word[self.typed_length:], True, (255, 255, 255))
+        self.screen.blit(word_surface, (self.word_x, self.word_y))
         self.screen.blit(word_surface, (self.word_x, self.word_y))
