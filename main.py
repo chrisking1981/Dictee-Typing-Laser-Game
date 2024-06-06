@@ -4,7 +4,7 @@ from game import Game
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((1600, 1200))
     pygame.display.set_caption("Vliegende Woorden Spel")
     clock = pygame.time.Clock()
     game = Game(screen)
