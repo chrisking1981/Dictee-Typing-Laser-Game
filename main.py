@@ -16,7 +16,7 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        game.update()
+        game.update(event)
         game.draw()
         pygame.display.flip()
         clock.tick(60)
