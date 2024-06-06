@@ -8,6 +8,7 @@ class Game:
         self.words = WORDS
         self.current_word = ""
         self.word_x = screen.get_width()
+        self.typed_length = 0
         self.word_y = random.randint(0, screen.get_height() - 50)
         self.font = pygame.font.Font(None, 74)
         self.word_speed = 5
@@ -17,13 +18,14 @@ class Game:
     def next_word(self):
         if self.words:
             self.current_word = self.words.pop(0)
+            self.typed_length = 0
             self.word_x = self.screen.get_width()
             self.word_y = random.randint(0, self.screen.get_height() - 50)
 
     def handle_input(self, char):
         if self.current_word and char == self.current_word[0]:
-            self.current_word = self.current_word[1:]
-            if not self.current_word:
+            self.typed_length += 1
+            if self.typed_length >= len(self.current_word):
                 self.next_word()
 
     def update(self, event=None):
@@ -36,5 +38,5 @@ class Game:
 
     def draw(self):
         self.screen.fill((0, 0, 0))
-        word_surface = self.font.render(self.current_word, True, (255, 255, 255))
+        word_surface = self.font.render(self.current_word[self.typed_length:], True, (255, 255, 255))
         self.screen.blit(word_surface, (self.word_x, self.word_y))
