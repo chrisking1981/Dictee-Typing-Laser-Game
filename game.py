@@ -8,6 +8,7 @@ class Game:
         self.words = WORDS
         self.current_word = ""
         self.word_x = screen.get_width()
+        self.user_input = ""
         self.word_y = random.randint(0, screen.get_height() - 50)
         self.font = pygame.font.Font(None, 74)
         self.word_speed = 5
@@ -26,6 +27,19 @@ class Game:
         self.word_x -= self.word_speed
         if self.word_x < -self.font.size(self.current_word)[0]:
             self.next_word()
+        if self.word_x < -self.font.size(self.current_word)[0]:
+            self.next_word()
+
+    def handle_input(self, char):
+        if self.current_word and char == self.current_word[0]:
+            self.current_word = self.current_word[1:]
+            if not self.current_word:
+                self.next_word()
+        if event.type == pygame.KEYDOWN:
+            self.handle_input(event.unicode)
+        self.word_x -= self.word_speed
+        if self.word_x < -self.font.size(self.current_word)[0]:
+            self.next_word()
 
     def handle_input(self, char):
         if self.current_word and char == self.current_word[0]:
@@ -35,5 +49,7 @@ class Game:
 
     def draw(self):
         self.screen.fill((0, 0, 0))
+        word_surface = self.font.render(self.current_word, True, (255, 255, 255))
+        self.screen.blit(word_surface, (self.word_x, self.word_y))
         word_surface = self.font.render(self.current_word, True, (255, 255, 255))
         self.screen.blit(word_surface, (self.word_x, self.word_y))
