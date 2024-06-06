@@ -32,8 +32,6 @@ class Game:
         if event and event.type == pygame.KEYDOWN:
             self.handle_input(event.unicode)
         self.word_x -= self.word_speed
-        if self.typed_length > 0:
-            self.word_x += self.font.size(self.current_word[:self.typed_length])[0]
         if self.word_x < -self.font.size(self.current_word)[0]:
             self.next_word()
 
@@ -41,5 +39,4 @@ class Game:
     def draw(self):
         self.screen.fill((0, 0, 0))
         word_surface = self.font.render(self.current_word[self.typed_length:], True, (255, 255, 255))
-        self.screen.blit(word_surface, (self.word_x, self.word_y))
         self.screen.blit(word_surface, (self.word_x, self.word_y))
