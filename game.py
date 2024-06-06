@@ -22,11 +22,6 @@ class Game:
             self.word_y = random.randint(0, self.screen.get_height() - 50)
 
     def update(self, event):
-        if event.type == pygame.KEYDOWN:
-            self.handle_input(event.unicode)
-        self.word_x -= self.word_speed
-        if self.word_x < -self.font.size(self.current_word)[0]:
-            self.next_word()
         if self.word_x < -self.font.size(self.current_word)[0]:
             self.next_word()
 
@@ -35,11 +30,6 @@ class Game:
             self.current_word = self.current_word[1:]
             if not self.current_word:
                 self.next_word()
-        if event.type == pygame.KEYDOWN:
-            self.handle_input(event.unicode)
-        self.word_x -= self.word_speed
-        if self.word_x < -self.font.size(self.current_word)[0]:
-            self.next_word()
 
     def handle_input(self, char):
         if self.current_word and char == self.current_word[0]:
