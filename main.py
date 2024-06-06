@@ -16,11 +16,8 @@ def main():
                 pygame.quit()
                 sys.exit()
             game.update(event)
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
 
-        game.update(event)
+        game.update()
         game.draw()
         pygame.display.flip()
         clock.tick(60)
