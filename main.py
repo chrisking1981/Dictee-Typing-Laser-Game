@@ -15,6 +15,10 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            game.update(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
         game.update(event)
         game.draw()
